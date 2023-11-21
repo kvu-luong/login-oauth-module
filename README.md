@@ -58,6 +58,43 @@ $ yarn run test:e2e
 $ yarn run test:cov
 ```
 
+## Implement
+Login with social media platform via OIDC flow without using passport library.
+- [ ] Google authorization code without PKCE
+- [ ] facebook
+- [ ] tiktok 
+- [ ] github
+- [ ] instagram
+
+## Question ???
+- If we don't use session to store the state and scope. -> CSRF
+
+## Note 
+- google: set app redirect ui may take time to effect 
+- request same domain will have session 
+- genrate ssl key on local, then declare in nestjs application.
+  ```bash 
+  openssl req -x509 -out localhost.crt -keyout localhost.key \
+  -newkey rsa:2048 -nodes -sha256 \
+  -subj '/CN=localhost' -extensions EXT -config <( \
+  printf "[dn]\nCN=localhost\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:localhost\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth")
+
+  ```
+  And then we change the name "localhost" to other domain that google support.
+  ```bash 
+  # Edit domain main for localhost
+  sudo nano /etc/hosts
+
+  # Type some domain name
+  127.0.0.1   myapp.local
+
+  # clear cache
+  sudo service systemd-resolved restart
+  ```
+  Note that when testing at local, we need to access `https://login-platform.xyz:5000/` first to let browser redirect to https, then access to `https://login-platform.xyz:5000/google-auth` later.
+
+  Information of user is in **id_token**
+  
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
