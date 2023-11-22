@@ -53,7 +53,6 @@ export class GoogleAuthService
       loginHint,
       hd,
     };
-    console.log({ googleAuthCodePayload });
     const queryString = qs.stringify(googleAuthCodePayload);
     return `${GOOGLE_AUTH_CODE_URL}?${queryString}`;
   }
@@ -84,7 +83,7 @@ export class GoogleAuthService
       redirect_uri: `${this.options.baseUrl}/${GOOGLE_CALLBACK_URL}`,
       grant_type: 'authorization_code',
     };
-    console.log({ requestPayload });
+
     const { data } = await firstValueFrom(
       this.httpService.post(GOOGLE_AUTH_TOKEN_URL, requestPayload, header).pipe(
         catchError((error) => {

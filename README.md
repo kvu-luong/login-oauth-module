@@ -60,8 +60,8 @@ $ yarn run test:cov
 
 ## Implement
 Login with social media platform via OIDC flow without using passport library.
-- [ ] Google authorization code without PKCE
-- [ ] facebook
+- [x] Google authorization code without PKCE
+- [x] facebook
 - [ ] tiktok 
 - [ ] github
 - [ ] instagram
@@ -94,6 +94,13 @@ Login with social media platform via OIDC flow without using passport library.
   Note that when testing at local, we need to access `https://login-platform.xyz:5000/` first to let browser redirect to https, then access to `https://login-platform.xyz:5000/google-auth` later.
 
   Information of user is in **id_token**
+
+- In this repo:
+  - how to add service and module to library
+  - how to return data base to main module
+  - add controller in library module 
+  - try to apply strategy pattern for multiple platform here 
+  - useExisting and useClass.
   
 ## Support
 
